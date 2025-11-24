@@ -1,26 +1,33 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS",  // تغییر به CommonJS برای سازگاری گسترده‌تر
+    "module": "CommonJS",
     "lib": [
       "ES2020",
       "DOM",
       "DOM.Iterable"
     ],
     "jsx": "react-jsx",
-    "esModuleInterop": true, // مهم برای ماژول‌های CommonJS/ES
-    "moduleResolution": "node", // تغییر به "node" برای سازگاری با TS قدیمی
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true, // رفع خطای TS1259
+    "allowSyntheticDefaultImports": true,
     "noEmit": true,
+    
+    // ⬅️ این گزینه برای اطمینان از پیدا شدن فایل‌های محلی بدون پسوند، کلیدی است
+    "allowJs": true, 
+    "resolveJsonModule": true,
+    // --------------------------------------------------------------------
 
-    // اگر از alias های داخلی (مثل '@/types') استفاده می‌کنید:
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./src/*"] // ⬅️ اصلاح مسیر: باید به پوشه "src" اشاره کند
+    },
+    
+    // ⬅️ اگر از تایپ‌های سفارشی استفاده می‌کنید
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src", "api"],
   "exclude": ["node_modules"]

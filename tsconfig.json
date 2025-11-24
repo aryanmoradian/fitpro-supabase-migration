@@ -18,12 +18,20 @@
     "moduleDetection": "force",
     "allowJs": true,
     "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
+    // --- افزودن تنها پارامترهای مورد نیاز ---
+    "allowSyntheticDefaultImports": true, // رفع خطای TS1259
+    "strict": true, // توصیه شده برای TypeScript
+    // ----------------------------------------
+
+    "baseUrl": ".", // برای کارکرد paths نیاز است
     "paths": {
       "@/*": [
         "./*"
       ]
-    },
-    "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+    }
+  },
+  "include": ["src", "api"]
 }

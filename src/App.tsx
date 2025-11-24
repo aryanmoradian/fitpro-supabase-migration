@@ -1,27 +1,30 @@
+
 import React, { useState, useEffect } from 'react';
 import { AppView, UserProfile, WorkoutPlan, ExerciseDefinition, TraineeSummary, AuthData, TraineeRequest, TraineeData } from './types';
 import { DEFAULT_USER_PROFILE, MOCK_COACH_PROFILE, MOCK_ATHLETE_PROFILE, EXERCISE_DATABASE, ADMIN_CONFIG } from './constants';
 import { LayoutDashboard, User, Utensils, Video, Globe, CalendarPlus, PlayCircle, Users, ChevronLeft, ArrowRight, MessageSquare, CreditCard, Clock, Loader2 } from 'lucide-react';
 import { supabase } from './supabaseConfig'; 
-import { fetchUserProfile, saveUserProfile, fetchUserData, saveUserData, completeOnboarding } from './services/userData'; 
+// ⬅️ اصلاح خط ۶: اضافه کردن پسوند .ts
+import { fetchUserProfile, saveUserProfile, fetchUserData, saveUserData, completeOnboarding } from './services/userData.ts'; 
 
 // Components
-import Auth from './components/Auth';
-import Header from './components/Header'; 
-import Footer from './components/Footer'; 
-import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
-import NutritionTracker from './components/NutritionTracker'; 
-import FormCheck from './components/FormCheck';
-import LiveCoach from './components/LiveCoach';
-import ResearchChat from './components/ResearchChat';
-import PlanBuilder from './components/PlanBuilder';
-import ActiveSession from './components/ActiveSession';
-import { CoachDashboard } from './components/CoachDashboard';
-import CoachMessenger from './components/CoachMessenger';
-import BusinessTools from './components/BusinessTools';
-import SuperAdminDashboard from './components/SuperAdminDashboard';
-import OnboardingTour from './components/OnboardingTour';
+// ⬅️ اصلاح خطوط ۹ تا ۲۴: اضافه کردن پسوند .tsx
+import Auth from './components/Auth.tsx';
+import Header from './components/Header.tsx'; 
+import Footer from './components/Footer.tsx'; 
+import Dashboard from './components/Dashboard.tsx';
+import Profile from './components/Profile.tsx';
+import NutritionTracker from './components/NutritionTracker.tsx'; 
+import FormCheck from './components/FormCheck.tsx';
+import LiveCoach from './components/LiveCoach.tsx';
+import ResearchChat from './components/ResearchChat.tsx';
+import PlanBuilder from './components/PlanBuilder.tsx';
+import ActiveSession from './components/ActiveSession.tsx';
+import { CoachDashboard } from './components/CoachDashboard.tsx';
+import CoachMessenger from './components/CoachMessenger.tsx';
+import BusinessTools from './components/BusinessTools.tsx';
+import SuperAdminDashboard from './components/SuperAdminDashboard.tsx';
+import OnboardingTour from './components/OnboardingTour.tsx';
 
 function App() {
   const [userProfile, setUserProfile] = useState<UserProfile>(DEFAULT_USER_PROFILE);
@@ -46,15 +49,15 @@ function App() {
 
       checkSession();
 
-      // ⬅️ اصلاح خط 47: تعیین نوع برای _event و session
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => { 
+      // ⬅️ اصلاح خط ۴۷: تعیین نوع برای _event و session (اعمال تغییر از کامنت شما)
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: 'INITIAL_SESSION' | 'SIGNED_IN' | 'SIGNED_OUT' | 'TOKEN_REFRESHED' | 'USER_UPDATED', session: any) => { 
           handleSession(session);
       });
 
       return () => subscription.unsubscribe();
   }, []);
 
-  // ⬅️ اصلاح خط 52: تعیین نوع برای session
+  // ⬅️ اصلاح خط ۵۲: تعیین نوع برای session (اعمال تغییر از کامنت شما)
   const handleSession = async (session: any) => {
       if (session?.user) {
           const user = session.user;
@@ -353,8 +356,8 @@ function App() {
                             onRemoveCustomExercise={handleRemoveCustomExercise}
                             targetTraineeId={selectedTrainee?.id}
                             targetTraineeName={selectedTrainee?.name}
-                            // ⬅️ اصلاح خط 370: تعیین نوع برای plan
-                            onSave={(plan: WorkoutPlan) => { 
+                            // ⬅️ اصلاح خط ۳۷۰: تعیین نوع برای plan (اعمال تغییر از کامنت شما)
+                            onSave={(plan: WorkoutPlan) => { 
                                 setActivePlan(plan);
                                 alert("برنامه ذخیره شد!");
                                 if (userProfile.role === 'Coach') {

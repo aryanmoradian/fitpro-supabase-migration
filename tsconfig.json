@@ -1,37 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
-    "module": "ESNext",
+    "target": "ES2020",
+    "module": "CommonJS",  // تغییر به CommonJS برای سازگاری گسترده‌تر
     "lib": [
-      "ES2022",
+      "ES2020",
       "DOM",
       "DOM.Iterable"
     ],
-    "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "allowJs": true,
     "jsx": "react-jsx",
-    "allowImportingTsExtensions": true,
+    "esModuleInterop": true, // مهم برای ماژول‌های CommonJS/ES
+    "moduleResolution": "node", // تغییر به "node" برای سازگاری با TS قدیمی
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true, // رفع خطای TS1259
     "noEmit": true,
 
-    // --- افزودن تنها پارامترهای مورد نیاز ---
-    "allowSyntheticDefaultImports": true, // رفع خطای TS1259
-    "strict": true, // توصیه شده برای TypeScript
-    // ----------------------------------------
-
-    "baseUrl": ".", // برای کارکرد paths نیاز است
+    // اگر از alias های داخلی (مثل '@/types') استفاده می‌کنید:
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
-  "include": ["src", "api"]
+  "include": ["src", "api"],
+  "exclude": ["node_modules"]
 }
